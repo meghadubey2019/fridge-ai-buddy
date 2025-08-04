@@ -40,7 +40,10 @@ const Index = () => {
 
   const handleImagesUploaded = (images: File[]) => {
     setUploadedImages(images);
-    if (images.length > 0) {
+  };
+
+  const handleContinueToDetection = () => {
+    if (uploadedImages.length > 0) {
       setCurrentStep(1);
     }
   };
@@ -66,7 +69,12 @@ const Index = () => {
   const renderCurrentStep = () => {
     switch (currentStep) {
       case 0:
-        return <ImageUpload onImagesChange={handleImagesUploaded} />;
+        return (
+          <ImageUpload 
+            onImagesChange={handleImagesUploaded} 
+            onContinue={handleContinueToDetection}
+          />
+        );
       case 1:
         return (
           <FoodDetection
